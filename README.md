@@ -12,60 +12,33 @@ A full-stack blogging platform built using the MERN stack (MongoDB, Express.js, 
 **Server:**
 * **Node.js**: Runtime environment.
 * **Express.js**: Web framework for the backend API.
-* **MongoDB**: NoSQL database for storing blog posts (assumed).
+* **MongoDB**: NoSQL database for storing blog posts.
 
 ---
 
-## 📂 Project Structure
+## 🏗️ Architecture
 
-The project is organized into two main directories:
+This project follows a **Client-Server Architecture** pattern, utilizing a Monorepo structure where both frontend and backend reside in the same repository but function as distinct entities.
 
-* `client1/` - Contains the Frontend React application.
-* `server/` - Contains the Backend Node.js/Express API.
+### High-Level Overview
 
----
+1.  **Frontend (`client1/`)**:
+    * Built with **React.js**.
+    * Acts as a Single Page Application (SPA).
+    * Responsible for rendering the UI and handling user interactions.
+    * Communicates with the backend server via HTTP requests (REST API).
 
-## 🛠️ Getting Started
+2.  **Backend (`server/`)**:
+    * Built with **Node.js** and **Express.js**.
+    * Acts as the REST API provider.
+    * Handles business logic, routing, and data validation.
+    * Connects to the **MongoDB** database to perform CRUD (Create, Read, Update, Delete) operations.
 
-Follow these instructions to set up the project locally on your machine.
+3.  **Database**:
+    * **MongoDB** stores the actual data (users, blog posts, comments) in JSON-like documents.
 
-### Prerequisites
+### Data Flow
 
-Make sure you have the following installed:
-* [Node.js](https://nodejs.org/) (v14 or higher)
-* [npm](https://www.npmjs.com/) (Node Package Manager)
-* [MongoDB](https://www.mongodb.com/) (Locally or Atlas connection string)
-
-### Installation
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/Adityalive/blogwebsite.git](https://github.com/Adityalive/blogwebsite.git)
-    cd blogwebsite
-    ```
-
-2.  **Setup Backend (Server):**
-    ```bash
-    cd server
-    npm install
-    ```
-    *Create a `.env` file in the `server` directory and add your variables (e.g., MONGODB_URI, PORT).*
-
-3.  **Setup Frontend (Client):**
-    ```bash
-    cd ../client1
-    npm install
-    ```
-
----
-
-## 🏃‍♂️ Running the Application
-
-To run the application, you will need to start both the backend and frontend servers.
-
-**1. Start the Server:**
-Open a terminal in the `server` directory:
-```bash
-npm start
-# or if you have nodemon installed
-npm run dev
+```text
+[ User Browser ]  <--->  [ React Frontend ]  <--->  [ Express API ]  <--->  [ MongoDB ]
+    (UI/UX)                (client1 folder)          (server folder)        (Database)
